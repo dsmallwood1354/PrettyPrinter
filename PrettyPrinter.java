@@ -1,18 +1,10 @@
-/**
- * @author: Dan Smallwood
- * @version: 09/18/2023
- * SER322 Assignment 5
- */
-
-package ser322;
-
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Class used to pretty print JDBC query results.
+ * Class used to pretty print query results.
  */
 public class PrettyPrinter {
     // Elements that make up the border of the pretty printed tables
@@ -22,7 +14,7 @@ public class PrettyPrinter {
 
     /**
      * Method used to pretty print the result set of a given query.
-     * @param rs ResultSet          The result set of a given JDBC query.
+     * @param rs ResultSet          The result set of a given query.
      */
     public void printTable(ResultSet rs) {
         try {
@@ -38,10 +30,7 @@ public class PrettyPrinter {
                 String[] rowData = new String[numCols];
                 // had to be hardcoded in to ensure the DATE value remained in YYYY format
                 for (int i = 0; i < numCols; i++) {
-                    if (rsmd.getColumnName(i + 1).equals("release_year"))
-                        rowData[i] = rs.getString(i + 1).split("-")[0];
-                    else
-                        rowData[i] = rs.getString(i + 1);
+                    rowData[i] = rs.getString(i + 1);
                 }
                 dbTableValues.add(rowData);
             }
